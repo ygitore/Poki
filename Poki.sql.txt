@@ -1,0 +1,68 @@
+select * from Grade
+
+
+select poem.Title, emotion.Name from PoemEmotion pemotion
+Join Poem poem on poem.Id = pemotion.PoemId
+Join Emotion emotion on emotion.Id = pemotion.EmotionId
+
+
+select COUNT(poem.Id) as 'Total Poem'
+from Poem poem
+
+
+select TOP 76 Name from Author
+order by Name ASC
+
+select TOP 76 author.Name, grade.Name from Author author
+Join Grade grade on grade.Id = author.GradeId
+order by author.Name ASC
+
+
+select TOP 76 author.Name, grade.Name, gender.Name from Author author
+Join Grade grade on grade.Id = author.GradeId
+Join Gender gender on gender.Id = author.GenderId
+order by author.Name ASC
+
+
+select COUNT(poem.WordCount) as 'Total_Word_Count' from Poem
+
+
+
+select MIN(CharCount) as 'Total_Char_Count' from Poem
+
+
+Select COUNT(author.Id) from Author
+Join Grade grade on grade.Id = author.GradeId
+where grade.Name = '3rd Grade'
+
+Select COUNT(author.Id) from Author
+Join Grade grade on grade.Id = author.GradeId
+where grade.Name = '1st Grade' or grade.Name = '2nd Grade' or grade.Name = '3rd Grade'
+
+
+Select COUNT(poem.Id) as 'Total Poem by 4th Grade' from Poem poem
+Join Author author on author.Id = poem.AuthorId
+Join Grade grade on grade.Id = author.GradeId
+where grade.Name = '4th Grade'
+
+
+
+Select grade.Name,COUNT(poem.Id) as 'Total Poem per grade' from Poem poem
+Join Author author on author.Id = poem.AuthorId
+Join Grade grade on grade.Id = author.GradeId
+Group by grade.Name 
+
+
+-- 14?
+Select poem.Title,MAX(poem.WordCount) as 'Poem with most words' from Poem poem
+GROUP BY poem.Title
+
+
+
+Select poem.Title,MAX(poem.WordCount) as 'Poem with most words' from Poem poem
+GROUP BY poem.Title
+
+
+select author.Name, Max(poem.AuthorId) as 'Total Poem Count' from Poem poem
+Join Author author on author.Id = poem.AuthorId
+GROUP BY  author.Name
